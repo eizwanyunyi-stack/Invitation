@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eizwan ♥ Maisarah | Luxury Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Montserrat',sans-serif;
+background:black;
+color:white;
+overflow-x:hidden;
+}
+
+/* ===== ENVELOPE INTRO ===== */
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:radial-gradient(circle,#2b0014,#000);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:9999;
+text-align:center;
+}
+
+.gold{
+font-family:'Great Vibes',cursive;
+font-size:65px;
+background:linear-gradient(90deg,#d4af37,#fff3b0,#d4af37);
+-webkit-background-clip:text;
+color:transparent;
+animation:shine 2s infinite;
+}
+
+@keyframes shine{
+0%{filter:brightness(1);}
+50%{filter:brightness(1.8);}
+100%{filter:brightness(1);}
+}
+
+.btn{
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:gold;
+color:black;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+
+/* ===== MAIN HERO ===== */
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+background:url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e') center/cover;
+}
+
+.overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.card{
+position:relative;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+padding:40px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,0.2);
+}
+
+h1{
+font-family:'Great Vibes',cursive;
+font-size:70px;
+margin:0;
+text-shadow:0 0 20px gold;
+}
+
+h2{color:gold}
+
+/* ===== SECTIONS ===== */
+section{
+padding:70px 20px;
+text-align:center;
+}
+
+/* COUNTDOWN */
+.countdown{
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.box{
+background:rgba(255,255,255,0.1);
+padding:15px;
+border-radius:15px;
+min-width:70px;
+}
+
+/* GALLERY */
+.gallery{
+display:flex;
+overflow-x:auto;
+gap:10px;
+scroll-snap-type:x mandatory;
+}
+
+.gallery img{
+width:250px;
+height:170px;
+object-fit:cover;
+border-radius:15px;
+scroll-snap-align:center;
+}
+
+/* RSVP */
+input,textarea{
+width:80%;
+padding:10px;
+margin:6px;
+border-radius:10px;
+border:none;
+}
+
+/* WISH BOARD */
+#wishes{
+background:rgba(255,255,255,0.05);
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+}
+
+/* FLOAT ELEMENTS */
+.petal{
+position:fixed;
+top:-10px;
+width:8px;
+height:8px;
+background:pink;
+border-radius:50%;
+animation:fall linear infinite;
+opacity:0.7;
+}
+
+@keyframes fall{
+to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* FIREWORKS */
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
+
+/* MUSIC */
+#musicBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+background:gold;
+border:none;
+padding:10px 15px;
+border-radius:50px;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<!-- FIREWORKS -->
+<canvas id="fire"></canvas>
+
+<!-- INTRO -->
+<div id="intro">
+<div class="gold">Eizwan ♥ Maisarah</div>
+<p>Luxury Wedding Invitation</p>
+<button class="btn" onclick="enterSite()">Masuk Undangan VIP</button>
+</div>
+
+<!-- MUSIC -->
+<audio id="audio" autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_d2f4c2c3f2.mp3">
+</audio>
+
+<button id="musicBtn" onclick="toggleMusic()">🎵 Music</button>
+
+<!-- HERO -->
+<div class="hero">
+<div class="overlay"></div>
+<div class="card">
+<h1>Eizwan & Maisarah</h1>
+<h2>Walimatul Urus</h2>
+<p>12 Jun 2027 • 11AM - 4PM</p>
+</div>
+</div>
+
+<!-- DETAILS -->
+<section>
+<h2>Goldenhall CMI, Tanjung Api</h2>
+
+<div class="countdown">
+<div class="box"><div id="d"></div><small>Hari</small></div>
+<div class="box"><div id="h"></div><small>Jam</small></div>
+<div class="box"><div id="m"></div><small>Minit</small></div>
+<div class="box"><div id="s"></div><small>Saat</small></div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section>
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e">
+<img src="https://images.unsplash.com/photo-1519741497674-611481863552">
+<img src="https://images.unsplash.com/photo-1529636798458-92182e662485">
+</div>
+</section>
+
+<!-- RSVP -->
+<section>
+<h2>RSVP / Hubungi</h2>
+
+<p><b>Call/SMS:</b> 01136678871</p>
+
+<input id="name" placeholder="Nama">
+<textarea id="msg" placeholder="Ucapan"></textarea>
+
+<button onclick="saveWish()">Hantar Ucapan</button>
+
+<div id="wishes"></div>
+</section>
+
+<!-- MAP -->
+<section>
+<h2>Lokasi</h2>
+<iframe
+src="https://www.google.com/maps?q=Goldenhall%20CMI%20Tanjung%20Api&output=embed"
+width="90%" height="250" style="border:0;border-radius:15px"></iframe>
+</section>
+
+<script>
+
+/* ===== ENTRANCE ===== */
+function enterSite(){
+document.getElementById("intro").style.display="none";
+startFireworks();
+}
+
+/* ===== COUNTDOWN ===== */
+let date=new Date("Jun 12, 2027 11:00:00").getTime();
+setInterval(()=>{
+let now=new Date().getTime();
+let d=date-now;
+
+document.getElementById("d").innerText=Math.floor(d/86400000);
+document.getElementById("h").innerText=Math.floor(d%86400000/3600000);
+document.getElementById("m").innerText=Math.floor(d%3600000/60000);
+document.getElementById("s").innerText=Math.floor(d%60000/1000);
+},1000);
+
+/* ===== PETALS ===== */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.style.left=Math.random()*100+"vw";
+p.style.animationDuration=(Math.random()*5+5)+"s";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),10000);
+},300);
+
+/* ===== MUSIC ===== */
+let audio=document.getElementById("audio");
+function toggleMusic(){
+audio.paused?audio.play():audio.pause();
+}
+
+/* ===== WISH BOARD ===== */
+function saveWish(){
+let n=document.getElementById("name").value;
+let m=document.getElementById("msg").value;
+
+let div=document.createElement("div");
+div.innerHTML="💌 <b>"+n+"</b>: "+m;
+div.style.padding="8px";
+div.style.margin="5px";
+div.style.background="rgba(255,255,255,0.1)";
+div.style.borderRadius="10px";
+
+document.getElementById("wishes").appendChild(div);
+}
+
+/* ===== FIREWORKS ===== */
+let c=document.getElementById("fire");
+let ctx=c.getContext("2d");
+c.width=window.innerWidth;
+c.height=window.innerHeight;
+
+let particles=[];
+
+function startFireworks(){
+setInterval(()=>{
+particles.push({
+x:Math.random()*c.width,
+y:Math.random()*c.height/2,
+r:Math.random()*3+2,
+a:1
+});
+},200);
+animate();
+}
+
+function animate(){
+ctx.clearRect(0,0,c.width,c.height);
+
+particles.forEach((p,i)=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="gold";
+ctx.fill();
+
+p.y-=1;
+p.a-=0.01;
+
+if(p.a<=0)particles.splice(i,1);
+});
+
+requestAnimationFrame(animate);
+}
+
+</script>
+
+</body>
+</html>
